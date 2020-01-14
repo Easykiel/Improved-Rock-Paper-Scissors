@@ -1,0 +1,57 @@
+﻿html {
+    font-size: 20px;
+    background: url(data:image/png;base64,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) bottom center;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.RockPaperScissors {
+    display: flex;
+    flex: 1;
+    min-height: 50vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice {
+    border: .3rem solid black;
+    border-radius: .5rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    transition: all .07s ease;
+    width: 10rem;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    text-shadow: 0 0 .5rem black;
+}
+
+.Results {
+    border: .3rem solid black;
+    border-radius: .5rem;
+    margin: auto;
+    
+    font-size: 1.5rem;
+    padding: 20px;
+    transition: all .07s ease;
+    width: 20rem;
+    color: black;
+    background: white;
+    align-items: center;
+}
+
+#Round {
+    text-align: center;
+    height: 50px;
+}
