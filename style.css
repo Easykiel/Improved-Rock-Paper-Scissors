@@ -18,7 +18,7 @@ h1 {
 .RockPaperScissors {
     display: flex;
     flex: 1;
-    min-height: 50vh;
+    min-height: 25vh;
     align-items: center;
     justify-content: center;
 }
@@ -41,11 +41,10 @@ h1 {
     border: .3rem solid black;
     border-radius: .5rem;
     margin: auto;
-    
     font-size: 1.5rem;
     padding: 20px;
     transition: all .07s ease;
-    width: 20rem;
+    width: 50rem;
     color: black;
     background: white;
     align-items: center;

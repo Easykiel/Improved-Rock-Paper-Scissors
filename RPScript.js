@@ -1,4 +1,4 @@
-// JavaScript source code
+// JavaScript source code for Improved Rock Paper Scissors website
 // By Ezekiel Protacio
 
 //Selects rock paper scissors at random
@@ -31,10 +31,6 @@ function playRound(playerSelection, computerSelection) {
         return winner[2];
 }
 
-function choicesMade() {
-
-}
-
 //Adds score of the winner
 function addScore(winner) {
     winnerScore = document.querySelector('#Computer');
@@ -57,77 +53,110 @@ function addScore(winner) {
     winnerScore.textContent = sliceText + score;
 }
 
+//Changes to the next Round
 function changeRound(){
     const round = document.querySelector('#Round');
     var score = parseInt(round.textContent[round.textContent.length - 1])
 
+    //Increments score then changes text to the current score
     score++;
     originalText = round.textContent;
     sliceText = originalText.slice(0, originalText.length - 1);
     round.textContent = sliceText + score;
 }
 
+//Displays Player's Choice and Results
+function displayChoices(computerChoice, playerChoice, winner) {
+    const player = document.querySelector('#playerChoice');
+    const computer = document.querySelector('#compChoice');
+    const winText = document.querySelector('#winner');
+    const playerWins = "You Win!";
+    const compWins = "Computer Wins!";
+    const draw = "It's a Draw!";
+
+    player.textContent = "You select " + playerChoice;
+    computer.textContent = "Computer selects " + computerChoice;
+
+    //Player wins
+    if (winner == 'player')
+        winText.textContent = playerWins;
+
+    //Computer Wins
+    else if (winner == 'computer')
+        winText.textContent = compWins;
+
+    //Draw
+    else
+        winText.textContent = draw;
+}
+
+//Checks if is at Five Rounds
+function fiveRounds() {
+    const Round = document.querySelector('#Round');
+
+    //Looks at the Round Number from the DOM
+    var roundNum = parseInt(Round.textContent[Round.textContent.length - 1]);
+
+    if (roundNum >= 5)
+        return true;
+
+    else
+        return false;
+}
+
+//Displays the Winner of the 5 Rounds
+function displayWinner() {
+    const player = document.querySelector('#Player');
+    const computer = document.querySelector('#Computer');
+    const overallWinner = document.querySelector('#overallWinner')
+
+    //Looks at both scores
+    var playerScore = parseInt(
+        player.textContent[player.textContent.length - 1]);
+    var computerScore = parseInt(
+        computer.textContent[computer.textContent.length - 1]);
+
+    //Determines Winner
+    if(playerScore > computerScore)
+        overallWinner.textContent = "Yay! You win the 5 Rounds with " + playerScore + " points!";
+
+    else if (playerScore < computerScore)
+        overallWinner.textContent = "Aww! COM wins the 5 Rounds with " + computerScore + " points.";
+
+    else
+        overallWinner.textContent = "It's a draw with " + computerScore + " points!";
+}
+
 //Plays 5 rounds of Rock Paper Scissors
 function game() {
-    var computerWins = '';
     var winner = '';
     var choice = '';
     var computerSelection = '';
-    const playerWins = 'You Win!';
-    const draw = "It's a Draw!";
     const buttons = document.querySelectorAll('button');
-
-
 
     //Listens to all the buttons
     buttons.forEach((button) => {
 
         button.addEventListener('click', (e) => {
+            //Checks for 5 rounds
+            if(fiveRounds() == true){
+                displayWinner();
+                return;
+            } else
+                changeRound();
+
+            //Gets Players' choices
             computerSelection = computerPlay();
             choice = button.id.toLowerCase();
+
+            //Checks who wins then Displays it
             winner = playRound(choice, computerSelection);
+            displayChoices(computerSelection, choice, winner);
+
+            //Adds Score
             addScore(winner);
-            changeRound();
         });
     });
-
-
-    /*
-    //play for 5 rounds
-    while (currentRound <= 5) {
-        console.log('Computer selects ' + computerSelection);
-        console.log('You select ' + playerSelection);
-        computerWins = 'You Lose! ' + computerSelection + ' beats ' + playerSelection;
-
-        //Player wins add to his/her score
-        if (winner == 'player') {
-            console.log(playerWins);
-            playerScore++;
-        }
-
-        //Computer Wins add to its score
-        else if (winner == 'computer') {
-            console.log(computerWins);
-            computerScore++;
-        }
-
-        //Draw no scores added
-        else
-            console.log(draw);
-
-        console.log('\n');
-        currentRound++;
-    }
-
-    if (playerScore > computerScore)
-        console.log('Yay! You win the 5 Rounds with ' + playerScore + ' points!');
-
-    else if (computerScore > playerScore)
-        console.log('Aww! COM wins the 5 Rounds with ' + computerScore + ' points :(');
-
-    else
-        console.log("It's a draw with " + computerScore + " points!");
-    */
 }
 
 game();
